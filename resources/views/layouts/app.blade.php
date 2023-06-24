@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>skpi.polsri</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -196,7 +196,11 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            @yield('content')
+            <section class="content">
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+            </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -248,8 +252,6 @@
     <script src="{{ asset('AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('AdminLTE-3.2.0/dist/js/adminlte.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('AdminLTE-3.2.0/dist/js/pages/dashboard.js') }}"></script>
 
     @yield('js_after')
 </body>

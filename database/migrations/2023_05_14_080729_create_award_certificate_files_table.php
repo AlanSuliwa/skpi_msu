@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('award_certificate_files', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->comment('foreign key user');
+            $table->string('title')->comment('judul');
+            $table->string('institution')->comment('lembaga');
+            $table->string('file')->comment('file');
+            $table->string('status')->comment('status verifikasi');
             $table->timestamps();
         });
     }
