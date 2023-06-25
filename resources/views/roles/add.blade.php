@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <div class="header-title">
-                <h4 class="card-title">Tambah Role</h4>
+                <h4 class="card-title">Peran</h4>
             </div>
         </div>
 

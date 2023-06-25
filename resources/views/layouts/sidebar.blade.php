@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="assets/images/polsri.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: 0.8" />
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">S K P I</span>
     </a>
 
     <!-- Sidebar -->
@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link active">
+                            <a href="{{ route('role.index') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Peran</p>
                             </a>
@@ -53,7 +53,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{ route('user.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>Profil Mahasiswa</p>
                     </a>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon far fa-building"></i>
                         <p>Profil Progam Studi</p>
                     </a>
