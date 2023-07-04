@@ -23,13 +23,13 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
-            <li class="nav-item">
-                <a href="app.blade.php" class="nav-link">
+            <li class="nav-item none">
+                <a href="app.blade.php" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
-                <li class="nav-item menu-open">
+                <li class="nav-item none">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -59,19 +59,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>Profil Mahasiswa MSU</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('studyprogram.index') }}" class="nav-link">
                         <i class="nav-icon far fa-building"></i>
                         <p>Profil Progam Studi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{ route('institutionalprofile.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-university"></i>
                         <p>Profil Institusi</p>
                     </a>

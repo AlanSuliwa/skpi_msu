@@ -32,8 +32,6 @@ class RoleController extends Controller
         confirmDelete($title, $text);
 
         // $roles = Role::orderBy('id', 'DESC')->paginate(5);
-
-
         return view('roles.index');
     }
 
