@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->comment('foreign key user');
+            $table->bigInteger('department_id')->comment('foreign key department');
             $table->string('nim')->comment('nim');
             $table->bigInteger('nik')->comment('nik/noktp');
             $table->string('name')->comment('nim');
@@ -32,6 +33,10 @@ return new class extends Migration
             $table->integer('post_code')->comment('kode pos');
             $table->integer('entry_year')->comment('tahun masuk');
             $table->string('certificate_file')->nullable()->comment('file ijazah');
+            $table->string('indonesian_title')->comment('judul bahasa indonesia');
+            $table->string('english_title')->comment('judul bahasa inggris');
+            $table->string('lecturer1')->comment('pembimbing 1');
+            $table->string('lecturer2')->comment('pembimbing 2');
             $table->timestamps();
         });
     }

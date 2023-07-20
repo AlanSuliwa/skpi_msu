@@ -17,17 +17,31 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'admin',
+            'name' => 'Super Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('adminskpi2023')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'Super Admin']);
 
         $permissions = Permission::pluck('id', 'id')->all();
 
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+
+        /* Mahasiswa & Admin Jurusan */
+        $roles = [
+            [
+                'name' => 'Mahasiswa',
+            ],
+            [
+                'name' => 'Admin Jurusan'
+            ]
+        ];
+
+        foreach ($roles as $item) {
+            Role::create($item);
+        }
     }
 }
