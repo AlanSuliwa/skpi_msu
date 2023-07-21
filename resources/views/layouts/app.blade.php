@@ -134,6 +134,8 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('AdminLTE-3.2.0/dist/js/adminlte.js') }}"></script>
 
+    @include('sweetalert::alert')
+
     @yield('js_after')
 </body>
 
