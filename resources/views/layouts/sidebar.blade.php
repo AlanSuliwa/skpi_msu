@@ -31,43 +31,32 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item none">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Kelola Pengguna
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pengguna</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Kelola Pengguna</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('student.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>Profil Mahasiswa</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>Profil Mahasiswa MSU</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('studyprogram.index') }}" class="nav-link">
+                    <a href="{{ route('department.index') }}" class="nav-link">
                         <i class="nav-icon far fa-building"></i>
                         <p>Profil Progam Studi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('institutionalprofile.index') }}" class="nav-link">
+                    <a href="{{ route('institution') }}" class="nav-link">
                         <i class="nav-icon fas fa-university"></i>
                         <p>Profil Institusi</p>
                     </a>

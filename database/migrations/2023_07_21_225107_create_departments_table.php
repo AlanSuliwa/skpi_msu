@@ -15,6 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('study_program');
+            $table->string('department_head');
+            $table->string('department_secretary');
+            $table->text('brief_description')->nullable();
+            $table->text('vision')->nullable();
+            $table->text('mision')->nullable();
+            $table->text('main_competency')->nullable();
+            $table->text('support_competency')->nullable();
+            $table->text('other_competency')->nullable();
             $table->timestamps();
         });
     }

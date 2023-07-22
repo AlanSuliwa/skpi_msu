@@ -36,12 +36,10 @@ class UserController extends Controller
                 return $formatedDate;
             })
             ->addColumn('action', function ($data) {
-                $url_show = route('user.show', Crypt::encrypt($data->id));
                 $url_edit = route('user.edit', Crypt::encrypt($data->id));
                 $url_delete = route('user.destroy', Crypt::encrypt($data->id));
 
                 $btn = "<div class='btn-group'>";
-                $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
                 $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
                 $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
 
@@ -65,14 +63,6 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name', 'name')->all();
         return view('users.add', compact('roles'));
-    }
-
-    public function show($id)
-    {
-        $id = Crypt::decrypt($id);
-        $user = User::find($id);
-
-        return view('users.show', compact('user'));
     }
 
     public function edit($id)
@@ -102,6 +92,15 @@ class UserController extends Controller
             // Create Data
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
+
+            // Save Image
+            if ($file = $request->file('photo')) {
+                $destinationPath = 'assets/images/';
+                $fileName = "USER" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['photo'] = $fileName;
+            }
+
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
 
@@ -146,6 +145,26 @@ class UserController extends Controller
             }
 
             $user = User::find($id);
+
+            // Image
+            if ($file = $request->file('photo')) {
+                // Remove Old File
+                if (!empty($user['photo'])) {
+                    $file_exist = 'assets/images/' . $user['photo'];
+
+                    if (file_exists($file_exist)) {
+                        unlink($file_exist);
+                    }
+                }
+
+                // Store New File
+                $destinationPath = 'assets/images/';
+                $fileName = "USER" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['photo'] = $fileName;
+            } else {
+                unset($input['photo']);
+            }
 
             $user->update($input);
 

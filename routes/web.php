@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,25 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/institution', [App\Http\Controllers\HomeController::class, 'institution'])->name('institution');
 
+// Student
 Route::group(['controller' => StudentController::class, 'prefix' => 'student', 'as' => 'student.'], function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
+// Department
+Route::group(['controller' => DepartmentController::class, 'prefix' => 'department', 'as' => 'department.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
@@ -40,31 +55,6 @@ Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' =>
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
-    Route::post('/store', 'store')->name('store');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-});
-
-// Program Studi
-Route::group(['controller' => StudyProgramController::class, 'prefix' => 'studyprogram', 'as' => 'studyprogram.'], function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/datatable', 'datatable')->name('datatable');
-    Route::get('/create', 'create')->name('create');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
-    Route::post('/store', 'store')->name('store');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-});
-
-// Institutionalprofile
-Route::group(['controller' => InstitutionalProfileController::class, 'prefix' => 'institutionalprofile', 'as' => 'institutionalprofile.'], function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/datatable', 'datatable')->name('datatable');
-    Route::get('/create', 'create')->name('create');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
