@@ -31,12 +31,21 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Kelola Pengguna</p>
-                    </a>
-                </li>
+                @hasanyrole('Super Admin|Akademik')
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Kelola Pengguna</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('supervisor.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>Kelola Pembimbing</p>
+                        </a>
+                    </li>
+                @endhasanyrole
+
                 <li class="nav-item">
                     <a href="{{ route('student.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>

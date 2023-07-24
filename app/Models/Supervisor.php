@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Supervisor extends Model
 {
     use HasFactory;
-
 
     protected $guarded = [];
 
@@ -50,7 +49,7 @@ class Department extends Model
     const STUDY_PROGRAM_D4_TEKNIK_ENERGI = "D4 Teknik Energi";
     const STUDY_PROGRAM_S2_TEKNIK_ENERGI_TERBARUKAN = "S2 Teknik Energi Terbarukan";
     const STUDY_PROGRAM_D3_AKUNTANSI = "D3 Akuntansi";
-    const STUDY_PROGRAM_D4_AKUTANSI_SEKTOR_PUBLIK= "D4 Akuntansi Sektor Publik";
+    const STUDY_PROGRAM_D4_AKUTANSI_SEKTOR_PUBLIK = "D4 Akuntansi Sektor Publik";
     const STUDY_PROGRAM_D3_ADMINISTRASI_BISNIS = "D3 Administrasi Bisnis";
     const STUDY_PROGRAM_D4_MANAJEMEN_BISNIS = "D4 Manajemen Bisnis";
     const STUDY_PROGRAM_D4_USAHA_PERJALANAN_WISATA = "D4 Usaha Perjalanan Wisata";

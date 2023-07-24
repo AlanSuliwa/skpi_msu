@@ -24,13 +24,15 @@
                         </div>
                     @endif
 
-                    <div class="card-body">
-                        <form action="{{ route('user.store') }}" method="post">
+                    <form action="{{ route('user.store') }}" method="post">
+
+                        <div class="card-body">
+
                             @csrf
                             <div class="form-group">
-                                <label for="name">Nama User </label>
+                                <label for="name">Nama Pengguna </label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                    value="{{ old('name') }}" placeholder="Nama Role..." required>
+                                    value="{{ old('name') }}" placeholder="Nama Pengguna..." required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email </label>
@@ -40,17 +42,22 @@
                             <div class="form-group">
                                 <label>Jurusan</label>
                                 <select name="department" class="form-control mb-3 select_role">
+                                    <option value="" selected>Pilih Jurusan</option>
                                     @foreach (\App\Models\Department::DEPARTMENT_CHOICE as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="photo">Foto (Jpg, Jpeg, Png | Maks 1 MB)</label>
-                                <input type="file" name="photo" class="form-control" id="photo"
-                                    value="{{ old('photo') }}">
+                            <div class="form-group">
+                                <label>Program Studi</label>
+                                <select name="study_program" class="form-control mb-3 select_role">
+                                    <option value="" selected>Pilih Jurusan</option>
+                                    @foreach (\App\Models\Department::STUDY_PROGRAM_CHOICE as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <br><br>
+                            <hr>
                             <div class="form-group">
                                 <label for="password">Password </label>
                                 <input type="password" name="password" class="form-control" id="password"
@@ -70,14 +77,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </form>
-                    </div>
-                    <!-- /.card-body -->
 
-                    <div class="card-footer">
-                        <a href="{{ route('user.index') }}" class="btn btn-warning">Kembali</a>
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <a href="{{ route('user.index') }}" class="btn btn-warning">Kembali</a>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.card -->
             </div>

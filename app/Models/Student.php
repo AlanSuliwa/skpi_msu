@@ -10,4 +10,26 @@ class Student extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    // Religion
+    const RELIGION_ISLAM = "Islam";
+    const RELIGION_PROTESTAN = "Protestan";
+    const RELIGION_KATOLIK = "Katolik";
+    const RELIGION_HINDU = "Hindu";
+    const RELIGION_BUDDHA = "Buddha";
+    const RELIGION_KHONGHUCU = "Khonghucu";
+
+    const RELIGION_CHOICE = [
+        self::RELIGION_ISLAM => self::RELIGION_ISLAM,
+        self::RELIGION_PROTESTAN => self::RELIGION_PROTESTAN,
+        self::RELIGION_KATOLIK => self::RELIGION_KATOLIK,
+        self::RELIGION_HINDU => self::RELIGION_HINDU,
+        self::RELIGION_BUDDHA => self::RELIGION_BUDDHA,
+        self::RELIGION_KHONGHUCU => self::RELIGION_KHONGHUCU,
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

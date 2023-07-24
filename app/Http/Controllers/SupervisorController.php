@@ -3,58 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Department;
-use App\Models\Student;
-use App\Models\User;
+use App\Models\Supervisor;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Yajra\DataTables\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
-
-class DepartmentController extends Controller
+class SupervisorController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->hasRole('Mahasiswa')) {
-            $user_id = Auth::user()->id;
-            $user = User::where('id', $user_id)->first();
-            $department = $user->department;
-            $study_program = $user->study_program;
+        // Confirm Delete Alert
+        $title = 'Hapus Data!';
+        $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+        confirmDelete($title, $text);
 
-            $data = Department::where('name', $department)
-                ->where('study_program', $study_program)
-                ->first();
-
-            return view('departments.index', compact('data'));
-        } else {
-            // Confirm Delete Alert
-            $title = 'Hapus Data!';
-            $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
-            confirmDelete($title, $text);
-
-            return view('departments.index');
-        }
+        return view('supervisors.index');
     }
 
     public function datatable()
     {
-        $model = Department::query();
+        $model = Supervisor::query()
+            ->orderBy('name', 'asc');
 
         return DataTables::of($model)
-            ->editColumn('created_at', function ($data) {
-                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
-                return $formatedDate;
-            })
             ->addColumn('action', function ($data) {
-                $url_edit = route('department.edit', Crypt::encrypt($data->id));
-                $url_show = route('department.show', Crypt::encrypt($data->id));
-                $url_delete = route('department.destroy', Crypt::encrypt($data->id));
+                $url_edit = route('supervisor.edit', Crypt::encrypt($data->id));
+                $url_delete = route('supervisor.destroy', Crypt::encrypt($data->id));
 
                 $btn = "<div class='btn-group'>";
-                $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-eye mr-2'></i> Lihat</a>";
                 $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
                 $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
 
@@ -66,23 +44,23 @@ class DepartmentController extends Controller
 
     public function create()
     {
-        return view('departments.add');
+        return view('supervisors.add');
     }
 
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
-        $data = Department::find($id);
+        $data = Supervisor::find($id);
 
-        return view('departments.edit', compact('data'));
+        return view('supervisors.edit', compact('data'));
     }
 
     public function show($id)
     {
         $id = Crypt::decrypt($id);
-        $data = Department::find($id);
+        $data = Supervisor::find($id);
 
-        return view('departments.show', compact('data'));
+        return view('supervisors.show', compact('data'));
     }
 
     public function store(Request $request)
@@ -93,22 +71,22 @@ class DepartmentController extends Controller
             // Validate Data
             $request->validate([
                 'name' => 'required',
+                'department' => 'required',
                 'study_program' => 'required',
-                'department_head' => 'required',
-                'department_secretary' => 'required',
+                'degree' => 'required',
             ]);
 
             // Create Data
             $input = $request->all();
 
-            Department::create($input);
+            Supervisor::create($input);
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Disimpan', 'success');
-            return redirect()->route('department.index');
+            return redirect()->route('supervisor.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
@@ -129,24 +107,24 @@ class DepartmentController extends Controller
             // Validate Data
             $request->validate([
                 'name' => 'required',
+                'department' => 'required',
                 'study_program' => 'required',
-                'department_head' => 'required',
-                'department_secretary' => 'required',
+                'degree' => 'required',
             ]);
 
             // Update Data
             $input = $request->all();
 
-            $department = Department::find($id);
+            $supervisor = Supervisor::find($id);
 
-            $department->update($input);
+            $supervisor->update($input);
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Diperbarui', 'success');
-            return redirect()->route('department.index');
+            return redirect()->route('supervisor.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
@@ -164,16 +142,16 @@ class DepartmentController extends Controller
 
             // Delete Data
             $id = Crypt::decrypt($id);
-            $Department = Department::find($id);
+            $supervisor = Supervisor::find($id);
 
-            $Department->delete();
+            $supervisor->delete();
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Dihapus', 'success');
-            return redirect()->route('department.index');
+            return redirect()->route('supervisor.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
