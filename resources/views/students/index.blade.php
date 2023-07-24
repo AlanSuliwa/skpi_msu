@@ -20,6 +20,7 @@
 @endsection
 
 @section('content')
+@hasanyrole('Super Admin|Admin Jurusan')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -60,6 +61,10 @@
             </div>
         </div>
     </div>
+    @endhasanyrole
+
+    @role('Mahasiswa')
+    @endrole
 @endsection
 
 @section('js_after')
