@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\InternshipCertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,13 @@ Route::group(['controller' => DepartmentController::class, 'prefix' => 'departme
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
 
+// Intership Certificate
+Route::group(['controller' => InternshipCertificateController::class, 'prefix' => 'internship_certificate', 'as' => 'internship_certificate.'], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
 // User
 Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/', 'index')->name('index');
@@ -70,5 +78,6 @@ Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' =>
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
+    Route::put('/update_photo/{id}', 'update_photo')->name('update_photo');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });

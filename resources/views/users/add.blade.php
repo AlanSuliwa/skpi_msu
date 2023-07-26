@@ -39,24 +39,6 @@
                                 <input type="email" name="email" class="form-control" id="email"
                                     value="{{ old('email') }}" placeholder="Email..." required>
                             </div>
-                            <div class="form-group">
-                                <label>Jurusan</label>
-                                <select name="department" class="form-control mb-3 select_role">
-                                    <option value="" selected>Pilih Jurusan</option>
-                                    @foreach (\App\Models\Department::DEPARTMENT_CHOICE as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Program Studi</label>
-                                <select name="study_program" class="form-control mb-3 select_role">
-                                    <option value="" selected>Pilih Jurusan</option>
-                                    @foreach (\App\Models\Department::STUDY_PROGRAM_CHOICE as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <hr>
                             <div class="form-group">
                                 <label for="password">Password </label>

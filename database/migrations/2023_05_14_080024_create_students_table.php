@@ -36,6 +36,11 @@ return new class extends Migration
             $table->string('english_title')->nullable()->comment('judul bahasa inggris');
             $table->string('lecturer1')->nullable()->comment('pembimbing 1');
             $table->string('lecturer2')->nullable()->comment('pembimbing 2');
+            $table->string('inspector1')->nullable()->comment('penguji 1');
+            $table->string('inspector2')->nullable()->comment('penguji 2');
+            $table->string('inspector3')->nullable()->comment('penguji 3');
+            $table->string('inspector4')->nullable()->comment('penguji 4');
+            $table->string('inspector5')->nullable()->comment('penguji 5');
             $table->timestamps();
         });
     }

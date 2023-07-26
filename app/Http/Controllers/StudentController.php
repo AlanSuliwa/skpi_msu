@@ -6,6 +6,10 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\IntershipCertificateFile;
+use App\Models\AwardCertificateFile;
+use App\Models\OrganizationalExperinceCertificateFile;
+use App\Models\SkillCertificateFile;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
@@ -23,7 +27,15 @@ class StudentController extends Controller
 
             $data = Student::where('user_id', $user_id)->first();
 
-            return view('students.index', compact('data'));
+            // IntershipCertificateFile
+            $IntershipCertificateFiles = IntershipCertificateFile::where('user_id', $user_id)->get();
+
+            //
+
+
+
+
+            return view('students.index', compact('data', 'IntershipCertificateFiles'));
         } else {
             // Confirm Delete Alert
             $title = 'Hapus Data!';
@@ -110,7 +122,13 @@ class StudentController extends Controller
                 return redirect()->back()->withInput();
             }
 
-            Student::create($input);
+            $student = Student::create($input);
+
+            $user = User::where('id', $user_id)->first();
+            $user->update([
+                'department' => $student->department,
+                'study_program' => $student->study_program,
+            ]);
 
             // Save Data
             DB::commit();

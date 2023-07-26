@@ -190,6 +190,61 @@ class UserController extends Controller
         }
     }
 
+    public function update_photo($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $id = Crypt::decrypt($id);
+
+            // Validate Data
+            $request->validate([
+                'photo' => 'mimes:jpg,jpeg|max:600',
+            ]);
+
+            // Update Data
+            $input = $request->all();
+
+            $user = User::find($id);
+
+            // Image
+            if ($file = $request->file('photo')) {
+                // Remove Old File
+                if (!empty($user['photo'])) {
+                    $file_exist = 'assets/images/' . $user['photo'];
+
+                    if (file_exists($file_exist)) {
+                        unlink($file_exist);
+                    }
+                }
+
+                // Store New File
+                $destinationPath = 'assets/images/';
+                $fileName = "USER" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['photo'] = $fileName;
+            } else {
+                unset($input['photo']);
+            }
+
+            $user->update($input);
+
+            // Save Data
+            DB::commit();
+
+            // Alert & Redirect
+            Alert::toast('Data Berhasil Diperbarui', 'success');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // If Data Error
+            DB::rollBack();
+
+            // Alert & Redirect
+            Alert::toast('Data Gagal Diperbarui', 'error');
+            return redirect()->back()->with('error', 'Data Tidak Berhasil Diperbarui' . $e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         try {
