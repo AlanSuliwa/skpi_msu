@@ -340,7 +340,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header border-0 ui-sortable-handle bg-gradient-primary">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5>Kerja Praktek (Magang)</h5>
@@ -353,9 +353,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap">
+                                        <table class="table table-bordered text-nowrap bg-gradient-white">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th>Aksi</th>
@@ -410,10 +410,10 @@
                             </div>
                             <hr>
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header border-0 ui-sortable-handle bg-gradient-primary">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Kerja Praktek (Magang)</h5>
+                                            <h5>Pengalaman Organisasi</h5>
                                         </div>
                                         <div class="col-md-6 d-flex justify-content-end">
                                             <button type="button" class="btn btn-primary ml-3 mb-3" data-toggle="modal"
@@ -423,23 +423,54 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap">
+                                        <table class="table table-bordered text-nowrap bg-gradient-white">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
                                                     <th>No</th>
                                                     <th>Judul Sertifikat</th>
                                                     <th>Lembaga</th>
-                                                    <th>Durasi Magang</th>
                                                     <th>Tanggal</th>
                                                     <th>File</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @forelse ($OrganizationalExperinceCertificateFiles as $item)
+                                                    <tr class="text-center">
+                                                        <td>
+                                                            <form
+                                                                action="{{ route('organizationalexperince_certificate.destroy', Crypt::encrypt($item->id)) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button onclick="return confirm('Hapus Data?')" type="submit"
+                                                                    class="btn btn-danger"><i class="fa fa-trash"></i>
+                                                                    Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>
+                                                            <b>{{ $item->indonesian_title }}</b>
+                                                            <br>
+                                                            <i>{{ $item->english_title }}</i>
+                                                        </td>
+                                                        <td>{{ $item->institution }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}
+                                                        </td>
+                                                        <td> <a href="{{ asset('assets/files/' . $item->file) }}"
+                                                                class="btn btn-primary">Lihat File</a> </td>
+                                                        <td>{{ $item->status }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="8">
+                                                            <p class="text-center">Data Belum Ada</p>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
@@ -447,10 +478,10 @@
                             </div>
                             <hr>
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header border-0 ui-sortable-handle bg-gradient-primary">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Kerja Praktek (Magang)</h5>
+                                            <h5>Prestasi dan Penghargaan</h5>
                                         </div>
                                         <div class="col-md-6 d-flex justify-content-end">
                                             <button type="button" class="btn btn-primary ml-3 mb-3" data-toggle="modal"
@@ -460,23 +491,54 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap">
+                                        <table class="table table-bordered text-nowrap bg-gradient-white">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
                                                     <th>No</th>
                                                     <th>Judul Sertifikat</th>
                                                     <th>Lembaga</th>
-                                                    <th>Durasi Magang</th>
                                                     <th>Tanggal</th>
                                                     <th>File</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @forelse ($AwardCertificateFiles as $item)
+                                                    <tr class="text-center">
+                                                        <td>
+                                                            <form
+                                                                action="{{ route('award_certificate.destroy', Crypt::encrypt($item->id)) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button onclick="return confirm('Hapus Data?')" type="submit"
+                                                                    class="btn btn-danger"><i class="fa fa-trash"></i>
+                                                                    Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>
+                                                            <b>{{ $item->indonesian_title }}</b>
+                                                            <br>
+                                                            <i>{{ $item->english_title }}</i>
+                                                        </td>
+                                                        <td>{{ $item->institution }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}
+                                                        </td>
+                                                        <td> <a href="{{ asset('assets/files/' . $item->file) }}"
+                                                                class="btn btn-primary">Lihat File</a> </td>
+                                                        <td>{{ $item->status }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="8">
+                                                            <p class="text-center">Data Belum Ada</p>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
@@ -484,10 +546,10 @@
                             </div>
                             <hr>
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header border-0 ui-sortable-handle bg-gradient-primary">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Kerja Praktek (Magang)</h5>
+                                            <h5>Sertifikat Keahlian/Seminar</h5>
                                         </div>
                                         <div class="col-md-6 d-flex justify-content-end">
                                             <button type="button" class="btn btn-primary ml-3 mb-3" data-toggle="modal"
@@ -497,23 +559,54 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap">
+                                        <table class="table table-bordered text-nowrap bg-gradient-white">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
                                                     <th>No</th>
                                                     <th>Judul Sertifikat</th>
                                                     <th>Lembaga</th>
-                                                    <th>Durasi Magang</th>
                                                     <th>Tanggal</th>
                                                     <th>File</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @forelse ($SkillCertificateFiles as $item)
+                                                    <tr class="text-center">
+                                                        <td>
+                                                            <form
+                                                                action="{{ route('skill_certificate.destroy', Crypt::encrypt($item->id)) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button onclick="return confirm('Hapus Data?')" type="submit"
+                                                                    class="btn btn-danger"><i class="fa fa-trash"></i>
+                                                                    Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>
+                                                            <b>{{ $item->indonesian_title }}</b>
+                                                            <br>
+                                                            <i>{{ $item->english_title }}</i>
+                                                        </td>
+                                                        <td>{{ $item->institution }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d m Y') }}
+                                                        </td>
+                                                        <td> <a href="{{ asset('assets/files/' . $item->file) }}"
+                                                                class="btn btn-primary">Lihat File</a> </td>
+                                                        <td>{{ $item->status }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="8">
+                                                            <p class="text-center">Data Belum Ada</p>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
@@ -579,24 +672,51 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal create pengalaman organisasi -->
         <div class="modal fade" id="pengalamanModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="pengalamanModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="pengalamanModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="pengalamanModalLabel">Pengalaman Organisasi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+                    <form action="{{ route('organizationalexperince_certificate.store') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Indonesia)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="indonesian_title" id="" rows="3"> </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Inggris)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="english_title" id="" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Lembaga</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="institution" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Upload File</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="file" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -607,18 +727,44 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="prestasiModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="prestasiModalLabel">Prestasi dan Penghargaan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+                    <form action="{{ route('award_certificate.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Indonesia)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="indonesian_title" id="" rows="3"> </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Inggris)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="english_title" id="" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Lembaga</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="institution" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Upload File</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="file" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -629,18 +775,44 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="sertifikatModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="sertifikatModalLabel">Sertifikat Keahlian/Seminar</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+                    <form action="{{ route('skill_certificate.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Indonesia)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="indonesian_title" id="" rows="3"> </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Judul (Inggris)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="english_title" id="" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Lembaga</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="institution" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Upload File</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="file" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

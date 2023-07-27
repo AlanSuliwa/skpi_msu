@@ -7,7 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\InternshipCertificateController;
-
+use App\Http\Controllers\OrganizationalExperinceCertificateController;
+use App\Http\Controllers\AwardCertificateController;
+use App\Http\Controllers\SkillCertificateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,6 +71,28 @@ Route::group(['controller' => InternshipCertificateController::class, 'prefix' =
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
+
+    // OrganizationalExperinceCertificate
+Route::group(['controller' => OrganizationalExperinceCertificateController::class, 'prefix' => 'organizationalexperince_certificate', 'as' => 'organizationalexperince_certificate.'], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
+ // AwardCertificate
+ Route::group(['controller' => AwardCertificateController::class, 'prefix' => 'award_certificate', 'as' => 'award_certificate.'], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
+ // SkillCertificate
+ Route::group(['controller' => SkillCertificateController::class, 'prefix' => 'skill_certificate', 'as' => 'skill_certificate.'], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
 
 // User
 Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' => 'user.'], function () {

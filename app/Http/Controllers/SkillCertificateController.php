@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\IntershipCertificateFile;
+use App\Models\SkillCertificateFile;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 
 
-class InternshipCertificateController extends Controller
+class SkillCertificateController extends Controller
 {
     public function store(Request $request)
     {
@@ -22,7 +22,6 @@ class InternshipCertificateController extends Controller
                 'indonesian_title' => 'required',
                 'english_title' => 'required',
                 'institution' => 'required',
-                'internship_period' => 'required',
                 'file' => 'mimes:pdf|max:1024',
             ]);
 
@@ -32,14 +31,14 @@ class InternshipCertificateController extends Controller
             // Save Image
             if ($file = $request->file('file')) {
                 $destinationPath = 'assets/files/';
-                $fileName = "Sertifikat Ma  gang" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $fileName = "Prestasi Penghargaan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
                 $input['file'] = $fileName;
             }
 
-            $input['status'] = IntershipCertificateFile::STATUS_NOT_VALIDATE;
+            $input['status'] = SkillCertificateFile::STATUS_NOT_VALIDATE;
             $input['user_id'] = Auth::user()->id;
-            IntershipCertificateFile::create($input);
+            SkillCertificateFile::create($input);
 
             // Save Data
             DB::commit();
@@ -75,9 +74,9 @@ class InternshipCertificateController extends Controller
             // Update Data
             $input = $request->all();
 
-            $IntershipCertificateFile = IntershipCertificateFile::find($id);
+            $SkillCertificateFile = SkillCertificateFile::find($id);
 
-            $IntershipCertificateFile->update($input);
+            $SkillCertificateFile->update($input);
 
             // Save Data
             DB::commit();
@@ -102,9 +101,8 @@ class InternshipCertificateController extends Controller
 
             // Delete Data
             $id = Crypt::decrypt($id);
-            $IntershipCertificateFile = IntershipCertificateFile::find($id);
-
-            $IntershipCertificateFile->delete();
+            $SkillCertificateFile = SkillCertificateFile::find($id);
+            $SkillCertificateFile->delete();
 
             // Save Data
             DB::commit();

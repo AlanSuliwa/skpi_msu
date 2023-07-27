@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\IntershipCertificateFile;
-use App\Models\AwardCertificateFile;
 use App\Models\OrganizationalExperinceCertificateFile;
+use App\Models\AwardCertificateFile;
 use App\Models\SkillCertificateFile;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -30,12 +30,18 @@ class StudentController extends Controller
             // IntershipCertificateFile
             $IntershipCertificateFiles = IntershipCertificateFile::where('user_id', $user_id)->get();
 
-            //
+            //OrganizationalExperinceCertificateFile
+            $OrganizationalExperinceCertificateFiles = OrganizationalExperinceCertificateFile::where('user_id', $user_id)->get();
+
+            //AwardCertificateFile
+            $AwardCertificateFiles = AwardCertificateFile::where('user_id', $user_id)->get();
+
+            //SkillCertificateFile
+            $SkillCertificateFiles = SkillCertificateFile::where('user_id', $user_id)->get();
 
 
+            return view('students.index', compact('data', 'IntershipCertificateFiles','OrganizationalExperinceCertificateFiles','AwardCertificateFiles','SkillCertificateFiles'));
 
-
-            return view('students.index', compact('data', 'IntershipCertificateFiles'));
         } else {
             // Confirm Delete Alert
             $title = 'Hapus Data!';
