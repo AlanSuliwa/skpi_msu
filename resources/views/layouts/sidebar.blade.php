@@ -41,7 +41,7 @@
                     <li class="nav-item">
                         <a href="{{ route('supervisor.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-plus"></i>
-                            <p>Kelola Pembimbing</p>
+                            <p>Kelola Dosen</p>
                         </a>
                     </li>
                 @endhasanyrole

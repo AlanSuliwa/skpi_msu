@@ -13,7 +13,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Pembimbing</h3>
+                        <h3 class="card-title">Tambah Dosen Pembimbing dan Penguji</h3>
                     </div>
                     <!-- /.card-header -->
 
@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Lengkap (beserta gelar)</label>
+                                        <label>Nama Lengkap Dosen(beserta gelar)</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ old('name') }}" required>
                                     </div>
@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label>Jenjang</label>
                                         <select name="degree" class="form-control mb-3 select2" required>
-                                            <option selected value="">Pilih Program Studi</option>
+                                            <option selected value="">Pilih Jenjang</option>
                                             @foreach (\App\Models\Supervisor::DEGREE_CHOICE as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach

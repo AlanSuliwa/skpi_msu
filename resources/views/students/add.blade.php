@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama</label>
+                                        <label>Nama Mahasiswa</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ old('name') }}" required>
                                     </div>

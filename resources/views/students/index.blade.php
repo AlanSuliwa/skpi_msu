@@ -355,7 +355,7 @@
                                 </div>
                                 <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap bg-gradient-white">
+                                        <table class="table table-bordered text-nowrap bg-gradient-yellow">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th>Aksi</th>
@@ -425,7 +425,7 @@
                                 </div>
                                 <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap bg-gradient-white">
+                                        <table class="table table-bordered text-nowrap bg-gradient-yellow">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
@@ -493,7 +493,7 @@
                                 </div>
                                 <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap bg-gradient-white">
+                                        <table class="table table-bordered text-nowrap bg-gradient-yellow">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
@@ -561,7 +561,7 @@
                                 </div>
                                 <div class="card-body border-0 ui-sortable-handle bg-gradient-warning">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-nowrap bg-gradient-white">
+                                        <table class="table table-bordered text-nowrap bg-gradient-yellow">
                                             <thead>
                                                 <tr>
                                                     <th>Aksi</th>
