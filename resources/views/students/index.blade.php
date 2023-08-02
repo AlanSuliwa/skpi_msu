@@ -303,7 +303,8 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="" class="btn btn-info"><i class="fa fa-edit"></i> Ubah Data</a>
+                                <a href="{{ route('student.edit', Crypt::encrypt($data->id)) }}" class="btn btn-info"><i
+                                        class="fa fa-edit"></i> Ubah Data</a>
                                 <a href="" class="btn btn-danger"><i class="fa fa-file-pdf"></i> Cetak Identitas</a>
                             </div>
                         </div>
