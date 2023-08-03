@@ -201,8 +201,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Kode</label>
-                                <div class="col-sm-10">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Kode Pos</label>
+                                <div class="col-sm-4">
+                                    <input type="text" disabled class="form-control" id="staticEmail"
+                                        value="">
+                                </div>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">No.Telp</label>
+                                <div class="col-sm-4    \">
                                     <input type="text" disabled class="form-control" id="staticEmail"
                                         value="">
                                 </div>
