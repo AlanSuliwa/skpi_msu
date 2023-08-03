@@ -72,80 +72,73 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Program Studi</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
                                         value="{{ $data->department }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Jenjang</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ayah</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ibu</label>
                                 <div class="col-sm-10">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                    <input type="text" disab wire:led class="form-control" id="staticEmail"
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Siswa</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Orang Tua</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Kode Pos</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Tahun Masuk</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Ijazah</label>
                                 <div class="col-sm-10">
                                     <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                        value="">
                                 </div>
                             </div>
                             <hr>
