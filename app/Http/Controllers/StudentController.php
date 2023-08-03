@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\Supervisor;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\IntershipCertificateFile;
@@ -40,8 +41,7 @@ class StudentController extends Controller
             $SkillCertificateFiles = SkillCertificateFile::where('user_id', $user_id)->get();
 
 
-            return view('students.index', compact('data', 'IntershipCertificateFiles','OrganizationalExperinceCertificateFiles','AwardCertificateFiles','SkillCertificateFiles'));
-
+            return view('students.index', compact('data', 'IntershipCertificateFiles', 'OrganizationalExperinceCertificateFiles', 'AwardCertificateFiles', 'SkillCertificateFiles'));
         } else {
             // Confirm Delete Alert
             $title = 'Hapus Data!';
@@ -88,7 +88,9 @@ class StudentController extends Controller
 
         $data = Student::find($id);
 
-        return view('students.edit', compact('data'));
+        $supervisors = Supervisor::all();
+
+        return view('students.edit', compact('data', 'supervisors'));
     }
 
     public function show($id)
@@ -188,6 +190,43 @@ class StudentController extends Controller
             // Alert & Redirect
             Alert::toast('Data Tidak Tersimpan', 'error');
             return redirect()->back()->with('error', 'Data Tidak Berhasil Disimpan' . $e->getMessage());
+        }
+    }
+
+    public function update_data($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $id = Crypt::decrypt($id);
+            $student = Student::find($id);
+
+            // Create Data
+            $input = $request->all();
+
+            // Save File
+            if ($file = $request->file('certificate_file')) {
+                $destinationPath = 'assets/files/';
+                $fileName = "Ijazah" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['certificate_file'] = $fileName;
+            }
+
+            $student->update($input);
+
+            // Save Data
+            DB::commit();
+
+            // Alert & Redirect
+            Alert::toast('Data Berhasil Disimpan', 'success');
+            return redirect()->route('student.index');
+        } catch (\Exception $e) {
+            // If Data Error
+            DB::rollBack();
+
+            // Alert & Redirect
+            Alert::toast('Data Tidak Tersimpan', 'error');
+            return redirect()->back()->withInput()->with('error', 'Data Tidak Berhasil Disimpan' . $e->getMessage());
         }
     }
 

@@ -28,6 +28,14 @@ class Student extends Model
         self::RELIGION_KHONGHUCU => self::RELIGION_KHONGHUCU,
     ];
 
+    const GENDER_MAN = "Laki-laki";
+    const GENDER_WOMAN = "Perempuan";
+
+    const GENDER_CHOICE = [
+        self::GENDER_MAN => self::GENDER_MAN,
+        self::GENDER_WOMAN => self::GENDER_WOMAN
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

@@ -15,210 +15,281 @@
                             <h4 class="card-title">A. BIODATA/IDENTITAS : </h4>
                         </div>
                         <div class="card-body">
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->name }}">
+                            @if (session('error'))
+                                <span class="text-danger">{{ session('error') }}</span>
+                            @endif
+                            <form action="{{ route('student.update_data', Crypt::encrypt($data->id)) }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('put')
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->name }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">NPM</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->nim }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">NPM</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->nim }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">No KTP/NIK</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->nik }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">No KTP/NIK</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" name="nik" class="form-control" id="staticEmail"
+                                            value="{{ old('nik', $data->nik) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Tempat Lahir</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->birth_place }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->birth_place }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->birth_date }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->birth_date }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->gender }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="gender" selected>
+                                            <option value="" selected>Pilih Jenis Kelamin</option>
+                                            @foreach (App\Models\Student::GENDER_CHOICE as $key => $value)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $data->gender ? 'selected' : '' }}>{{ $value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Agama</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->religion }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Agama</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="religion" selected>
+                                            <option value="" selected>Pilih Agama</option>
+                                            @foreach (App\Models\Student::RELIGION_CHOICE as $key => $value)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $data->religion ? 'selected' : '' }}>{{ $value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Jurusan</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->department }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Program Studi</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="{{ $data->department }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Program Studi</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->study_program }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Jenjang</label>
-                                <div class="col-sm-8">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Jenjang</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ $data->degree }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ayah</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ayah</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="father_name" class="form-control" id="staticEmail"
+                                            value="{{ old('father_name', $data->father_name) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ibu</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama Ibu</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="mother_name" class="form-control" id="staticEmail"
+                                            value="{{ old('mother_name', $data->mother_name) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Siswa</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Siswa</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="student_address" class="form-control"
+                                            id="staticEmail"
+                                            value="{{ old('student_address', $data->student_address) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Orang Tua</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Alamat Orang Tua</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="parent_address" class="form-control"
+                                            id="staticEmail" value="{{ old('parent_address', $data->parent_address) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Kode Pos</label>
-                                <div class="col-sm-4">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Kode Pos</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" name="post_code" class="form-control" id="staticEmail"
+                                            value="{{ old('post_code', $data->post_code) }}">
+                                    </div>
+                                    <label for="staticEmail" class="col-sm-1 col-form-label">No.telp</label>
+                                    <div class="col-sm-3">
+                                        <input type="number" name="phone_number" class="form-control" id="staticEmail"
+                                            value="{{ old('phone_number', $data->phone_number) }}">
+                                    </div>
                                 </div>
-                                <label for="staticEmail" class="col-sm-1 col-form-label">No.telp</label>
-                                <div class="col-sm-3">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-4">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
-                                </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" enable class="form-control" id="staticEmail"
+                                            value="{{ Auth::user()->email }}">
+                                    </div>
 
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Tahun Masuk</label>
-                                <div class="col-sm-4">
-                                    <input type="text" disabled class="form-control" id="staticEmail"
-                                        value="">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Ijazah (SLTA/D3)</label>
-                                <div class="col-sm-8">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Tahun Masuk</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" disabled class="form-control" id="staticEmail"
+                                            value="{{ old('entry_year', $data->entry_year) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <h5>JUDUL LAPORAN DALAM BAHASA:</h5>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Indonesia</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control" name="indonesian_title" id="" rows="3" enable>  {{ $data->indonesian_title }}</textarea>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Ijazah (SLTA/D3)</label>
+                                    <div class="col-sm-8">
+                                        <input type="file" name="certificate_file" class="form-control"
+                                            id="staticEmail">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Inggris</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control" name="indonesian_title" id="" rows="3" enable> {{ $data->english_title }}</textarea>
+                                <hr>
+                                <h5>JUDUL LAPORAN DALAM BAHASA:</h5>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Indonesia</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" name="indonesian_title" rows="3" enable>  {{ $data->indonesian_title }}</textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <h5>Dosen Pembimbing:</h5>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Pembimbing I</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Inggris</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" name="english_title" rows="3" enable> {{ $data->english_title }}</textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Pembimbing II</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer2 }}">
+                                <hr>
+                                <h5>Dosen Pembimbing:</h5>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Pembimbing I</label>
+                                    <div class="col-sm-10">
+                                        <select name="lecturer1" class="form-control select2">
+                                            <option value="">Pembimbing I</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->lecturer1 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <h5>Dosen Penguji:</h5>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 1</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enalbe class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Pembimbing II</label>
+                                    <div class="col-sm-10">
+                                        <select name="lecturer2" class="form-control select2">
+                                            <option value="">Pembimbing II</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->lecturer2 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 2</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <hr>
+                                <h5>Dosen Penguji:</h5>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 1</label>
+                                    <div class="col-sm-10">
+                                        <select name="inspector1" class="form-control select2">
+                                            <option value="">Penguji 1</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->inspector1 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 3</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 2</label>
+                                    <div class="col-sm-10">
+                                        <select name="inspector2" class="form-control select2">
+                                            <option value="">Penguji 2</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->inspector2 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 4</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 3</label>
+                                    <div class="col-sm-10">
+                                        <select name="inspector3" class="form-control select2">
+                                            <option value="">Penguji 3</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->inspector3 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 5</label>
-                                <div class="col-sm-10">
-                                    <input type="text" enable class="form-control" id="staticEmail"
-                                        value="{{ $data->lecturer1 }}">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 4</label>
+                                    <div class="col-sm-10">
+                                        <select name="inspector4" class="form-control select2">
+                                            <option value="">Penguji 4</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->inspector4 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-center">
-                                <a href="{{ route('student.index', Crypt::encrypt($data->id)) }}" class="btn btn-warning"><i
-                                        class="fa fa-arrow-left"></i> Kembali</a>
-                                <a href="" class="btn btn-success"><i class="fa fa-save"></i> Simpan</a>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Penguji 5</label>
+                                    <div class="col-sm-10">
+                                        <select name="inspector5" class="form-control select2">
+                                            <option value="">Penguji 5</option>
+                                            @foreach ($supervisors as $item)
+                                                <option value="{{ $item->name }}"
+                                                    {{ $item->name == $data->inspector5 ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="{{ route('student.index', Crypt::encrypt($data->id)) }}"
+                                        class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>
+                                        Simpan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

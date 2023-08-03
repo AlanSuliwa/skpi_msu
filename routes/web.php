@@ -73,22 +73,22 @@ Route::group(['controller' => InternshipCertificateController::class, 'prefix' =
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
 
-    // OrganizationalExperinceCertificate
+// OrganizationalExperinceCertificate
 Route::group(['controller' => OrganizationalExperinceCertificateController::class, 'prefix' => 'organizationalexperince_certificate', 'as' => 'organizationalexperince_certificate.'], function () {
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
 
- // AwardCertificate
- Route::group(['controller' => AwardCertificateController::class, 'prefix' => 'award_certificate', 'as' => 'award_certificate.'], function () {
+// AwardCertificate
+Route::group(['controller' => AwardCertificateController::class, 'prefix' => 'award_certificate', 'as' => 'award_certificate.'], function () {
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
 
- // SkillCertificate
- Route::group(['controller' => SkillCertificateController::class, 'prefix' => 'skill_certificate', 'as' => 'skill_certificate.'], function () {
+// SkillCertificate
+Route::group(['controller' => SkillCertificateController::class, 'prefix' => 'skill_certificate', 'as' => 'skill_certificate.'], function () {
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
