@@ -8,10 +8,49 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Carbon;
 
 
 class SkillCertificateController extends Controller
 {
+
+    public function index()
+    {
+        // Confirm Delete Alert
+        $title = 'Hapus Data!';
+        $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+        confirmDelete($title, $text);
+
+        return view('skill_certificate.index');
+    }
+
+    public function datatable()
+    {
+        $model = SkillCertificateFile::query();
+
+        return DataTables::of($model)
+            ->editColumn('created_at', function ($data) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
+                return $formatedDate;
+            })
+            ->addColumn('student_name', function ($data) {
+                $student = Student::where('user_id', $data->user_id)->first();
+                $student_name = $student->name;
+                return $student_name;
+            })
+            ->addColumn('action', function ($data) {
+                $url_verification = route('skill_certificate.verification  ', Crypt::encrypt($data->id));
+
+                $btn = "<div class='btn-group'>";
+                $btn .= "<a href='$url_verification' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
+
+                $btn .= "</div>";
+                return $btn;
+            })
+            ->toJson();
+    }
+
     public function store(Request $request)
     {
         try {

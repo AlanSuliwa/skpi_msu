@@ -14,9 +14,9 @@ use App\Models\SkillCertificateFile;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
@@ -255,5 +255,15 @@ class StudentController extends Controller
             Alert::toast('Data Gagal Dihapus', 'error');
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
+    }
+
+    public function report($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = Student::find($id);
+
+        $pdf = PDF::loadview('students.report', ['data' => $data]);
+
+        return $pdf->stream('Surat Keterangan Pendamping Ijazah.pdf');
     }
 }

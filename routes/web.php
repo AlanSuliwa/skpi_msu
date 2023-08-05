@@ -36,6 +36,7 @@ Route::group(['controller' => StudentController::class, 'prefix' => 'student', '
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/report/{id}', 'report')->name('report');
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
@@ -68,6 +69,9 @@ Route::group(['controller' => DepartmentController::class, 'prefix' => 'departme
 
 // Intership Certificate
 Route::group(['controller' => InternshipCertificateController::class, 'prefix' => 'internship_certificate', 'as' => 'internship_certificate.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/verification/{id}', 'verification')->name('verification');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
@@ -75,6 +79,9 @@ Route::group(['controller' => InternshipCertificateController::class, 'prefix' =
 
 // OrganizationalExperinceCertificate
 Route::group(['controller' => OrganizationalExperinceCertificateController::class, 'prefix' => 'organizationalexperince_certificate', 'as' => 'organizationalexperince_certificate.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/verification/{id}', 'verification')->name('verification');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
@@ -82,6 +89,9 @@ Route::group(['controller' => OrganizationalExperinceCertificateController::clas
 
 // AwardCertificate
 Route::group(['controller' => AwardCertificateController::class, 'prefix' => 'award_certificate', 'as' => 'award_certificate.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/verification/{id}', 'verification')->name('verification');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
@@ -89,6 +99,9 @@ Route::group(['controller' => AwardCertificateController::class, 'prefix' => 'aw
 
 // SkillCertificate
 Route::group(['controller' => SkillCertificateController::class, 'prefix' => 'skill_certificate', 'as' => 'skill_certificate.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/verification/{id}', 'verification')->name('verification');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');

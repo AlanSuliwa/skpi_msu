@@ -4,14 +4,75 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IntershipCertificateFile;
+use App\Models\Student;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Carbon;
 
 class InternshipCertificateController extends Controller
 {
+    public function index()
+    {
+        // Confirm Delete Alert
+        $title = 'Hapus Data!';
+        $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+        confirmDelete($title, $text);
+
+        return view('internship_certificate.index');
+    }
+
+    public function datatable()
+    {
+        $model = IntershipCertificateFile::query()
+            ->orderBy('id', 'desc');
+
+        return DataTables::of($model)
+            ->editColumn('file', function ($data) {
+                $url_file = asset('assets/files/' . $data->file);
+                $btn = "<a target='_blank' href='$url_file' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Lihat File</a>";
+                return $btn;
+            })
+            ->addColumn('student_name', function ($data) {
+                $student = Student::where('user_id', $data->user_id)->first();
+                $student_name = $student->name;
+                return $student_name;
+            })
+            ->addColumn('student_nim', function ($data) {
+                $student = Student::where('user_id', $data->user_id)->first();
+                $student_nim = $student->nim;
+                return $student_nim;
+            })
+            ->addColumn('action', function ($data) {
+                $url_verification = route('internship_certificate.verification', Crypt::encrypt($data->id));
+
+                $btn = "<div class='btn-group'>";
+                $btn .= "<a href='$url_verification' class = 'btn btn-outline-success btn-sm text-nowrap'><i class='fas fa-check mr-2'></i> Verifikasi</a>";
+
+                $btn .= "</div>";
+                return $btn;
+            })
+            ->rawColumns(['file', 'action'])
+            ->toJson();
+    }
+
+    public function verification($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = IntershipCertificateFile::find($id);
+
+        $data->update([
+            'status' => IntershipCertificateFile::STATUS_VALIDATE
+        ]);
+
+        // Alert & Redirect
+        Alert::toast('Data Berhasil Disimpan', 'success');
+        return redirect()->back();
+    }
+
+
     public function store(Request $request)
     {
         try {

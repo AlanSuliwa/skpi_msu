@@ -70,6 +70,41 @@
                         <p>Profil Institusi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Verifikasi
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('internship_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Magang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('organizationalexperince_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertfikat Organisasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{  route('award_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Prestasi dan Penghargaan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route ('skill_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Keahlian dan Seminar</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -230,7 +230,7 @@
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Ijazah (SLTA/D3)</label>
                                 <div class="col-sm-10">
                                     @if (!empty($data->certificate_file))
-                                        <a href="{{ asset('assets/files/' . $data->certificate_file) }}"
+                                        <a target="_blank" href="{{ asset('assets/files/' . $data->certificate_file) }}"
                                             class="btn btn-primary"><i class="fa fa-eye"></i> Lihat File</a>
                                     @endif
                                 </div>
@@ -305,7 +305,8 @@
                             <div class="text-center">
                                 <a href="{{ route('student.edit', Crypt::encrypt($data->id)) }}" class="btn btn-info"><i
                                         class="fa fa-edit"></i> Ubah Data</a>
-                                <a href="" class="btn btn-danger"><i class="fa fa-file-pdf"></i> Cetak Identitas</a>
+                                <a target="_blank" href="{{ route('student.report', Crypt::encrypt($data->id)) }}" class="btn btn-danger"><i
+                                        class="fa fa-file-pdf"></i> Cetak Identitas</a>
                             </div>
                         </div>
                     </div>

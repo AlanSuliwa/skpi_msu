@@ -13,4 +13,9 @@ class AwardCertificateFile extends Model
 
     const STATUS_NOT_VALIDATE = "Belum Divalidasi";
     const STATUS_VALIDATE = "Divalidasi";
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

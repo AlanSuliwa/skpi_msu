@@ -36,6 +36,9 @@ class UserSeeder extends Seeder
                 'name' => 'Mahasiswa',
             ],
             [
+                'name' => 'Mahasiswa MSU',
+            ],
+            [
                 'name' => 'Akademik'
             ]
         ];
