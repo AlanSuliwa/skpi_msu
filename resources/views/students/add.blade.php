@@ -23,7 +23,6 @@
                             {{ session('error') }}
                         </div>
                     @endif
-
                     <form action="{{ route('student.store') }}" method="post">
                         @csrf
                         <div class="card-body">
