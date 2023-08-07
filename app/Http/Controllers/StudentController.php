@@ -74,6 +74,41 @@ class StudentController extends Controller
             ->toJson();
     }
 
+    public function index_msu()
+    {
+
+            // Confirm Delete Alert
+            $title = 'Hapus Data!';
+            $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+            confirmDelete($title, $text);
+
+            return view('students.index_msu');
+
+    }
+
+    public function datatable_msu()
+    {
+        $model = Student::query()
+             ->where('degree', 'msu')
+            ->orderBy('name', 'asc');
+
+        return DataTables::of($model)
+            ->addColumn('action', function ($data) {
+                $url_edit = route('student.edit', Crypt::encrypt($data->id));
+                $url_show = route('student.show', Crypt::encrypt($data->id));
+                $url_delete = route('student.destroy', Crypt::encrypt($data->id));
+
+                $btn = "<div class='btn-group'>";
+                $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-eye mr-2'></i> Lihat</a>";
+                $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
+                $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
+
+                $btn .= "</div>";
+                return $btn;
+            })
+            ->toJson();
+    }
+
     public function create()
     {
         $students = User::role('Mahasiswa')->get();

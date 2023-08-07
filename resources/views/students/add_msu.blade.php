@@ -13,24 +13,49 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Jurusan & Program Studi</h3>
+                        <h3 class="card-title">Tambah Mahasiswa MSU</h3>
                     </div>
                     <!-- /.card-header -->
 
                     {{-- Error Message --}}
-                    @if (session('error'))  
+                    @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
                     @endif
-                    <form action="{{ route('department.store') }}" method="post">
+                    <form action="{{ route('student.store') }}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Akun Mahasiswa MSU</label>
+                                        <select name="user_id" class="form-control mb-3 select2" required>
+                                            <option selected value="">Pilih Akun</option>
+                                            @foreach ($students as $item)
+                                                <option value="{{ Crypt::encrypt($item->id) }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nama Mahasiswa</label>
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ old('name') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>NPM</label>
+                                        <input type="number" class="form-control" name="nim"
+                                            value="{{ old('npm') }}" required>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jurusan</label>
-                                        <select name="name" class="form-control mb-3 select2" required>
+                                        <select name="department" class="form-control mb-3 select2" required>
                                             <option selected value="">Pilih Jurusan</option>
                                             @foreach (\App\Models\Department::DEPARTMENT_CHOICE as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
@@ -51,52 +76,34 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Ketua Jurusan</label>
-                                        <input type="text" class="form-control" name="department_head"
-                                            value="{{ old('department_head') }}" required>
+                                        <label>Jenjang</label>
+                                        <select name="degree" class="form-control mb-3 select2" required>
+                                            <option selected value="">Pilih Jenjang</option>
+                                            @foreach (\App\Models\Department::DEGREE_CHOICE as $key => $value)
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Sekretaris Jurusan</label>
-                                        <input type="text" class="form-control" name="department_secretary"
-                                            value="{{ old('department_secretary') }}" required>
+                                        <label>Tahun Masuk</label>
+                                        <input type="number" class="form-control" name="entry_year"
+                                            value="{{ old('entry_year') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Deskripsi Singkat</label>
-                                        <textarea name="brief_description" class="form-control" cols="10" rows="5">{{ old('brief_description') }}</textarea>
+                                        <label>Tempat Lahir</label>
+                                        <input type="text" class="form-control" name="birth_place"
+                                            value="{{ old('birth_place') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Visi</label>
-                                        <textarea name="vision" class="form-control" cols="10" rows="5">{{ old('vision') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Misi</label>
-                                        <textarea name="mision" class="form-control" cols="10" rows="5">{{ old('mision') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Kompetensi Utama</label>
-                                        <textarea name="main_competency" class="form-control" cols="10" rows="5">{{ old('main_competency') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Kompetensi Pendukung</label>
-                                        <textarea name="support_competency" class="form-control" cols="10" rows="5">{{ old('support_competency') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Kompetensi Lainnya</label>
-                                        <textarea name="other_competency" class="form-control" cols="10" rows="5">{{ old('other_competency') }}</textarea>
+                                        <label>Tanggal Lahir</label>
+                                        <input type="date" class="form-control" name="birth_date"
+                                            value="{{ old('birth_date') }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +111,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <a href="{{ route('department.index') }}" class="btn btn-warning">Kembali</a>
+                            <a href="{{ route('student.index_msu') }}" class="btn btn-warning">Kembali</a>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         </div>
                     </form>

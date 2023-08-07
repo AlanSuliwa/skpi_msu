@@ -43,7 +43,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Aksi</th>
-                                                <th>Nama</th>
+                                                <th>Nama Dosen</th>
                                                 <th>Jurusan</th>
                                                 <th>Program Studi</th>
                                                 <th>Jenjang</th>

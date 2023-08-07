@@ -319,7 +319,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Akun Mahasiswa</label>
+                                            <label>Akun Mahasiswa Regular</label>
                                             <input type="text" class="form-control" value="{{ $data->user->name }}"
                                                 disabled>
                                         </div>

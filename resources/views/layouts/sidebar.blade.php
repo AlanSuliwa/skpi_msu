@@ -31,7 +31,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                @hasanyrole('Super Admin|Akademik')
+                @hasanyrole('Super Admin')
                     <li class="nav-item">
                         <a href="{{ route('user.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
@@ -44,37 +44,24 @@
                             <p>Kelola Dosen</p>
                         </a>
                     </li>
-                @endhasanyrole
 
                 <li class="nav-item">
                     <a href="{{ route('student.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
-                        <p>Profil Mahasiswa</p>
+                        <p>Profil Mahasiswa Regular</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('student.index_msu') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>Profil Mahasiswa MSU</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('department.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-building"></i>
-                        <p>Profil Progam Studi</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('institution') }}" class="nav-link">
-                        <i class="nav-icon fas fa-university"></i>
-                        <p>Profil Institusi</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Verifikasi
+                            Verifikasi Sertifikat
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -94,17 +81,131 @@
                         <li class="nav-item">
                             <a href="{{  route('award_certificate.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sertifikat Prestasi dan Penghargaan</p>
+                                <p>Sertifikat Prestasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route ('skill_certificate.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sertifikat Keahlian dan Seminar</p>
+                                <p>Sertifikat Keahlian</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('department.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-building"></i>
+                        <p>Profil Progam Studi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('institution') }}" class="nav-link">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>Profil Institusi</p>
+                    </a>
+                </li>
+                @endhasanyrole
+                @hasanyrole('Akademik')
+                <li class="nav-item">
+                    <a href="{{ route('student.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Profil Mahasiswa</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('student.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Profil Mahasiswa MSU</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Verifikasi Sertifikat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('internship_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Magang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('organizationalexperince_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertfikat Organisasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{  route('award_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Prestasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route ('skill_certificate.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sertifikat Keahlian</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('department.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-building"></i>
+                        <p>Profil Progam Studi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('institution') }}" class="nav-link">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>Profil Institusi</p>
+                    </a>
+                </li>
+                @endhasanyrole
+                @hasanyrole('Mahasiswa')
+                <li class="nav-item">
+                    <a href="{{ route('student.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Profil Mahasiswa</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('department.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-building"></i>
+                        <p>Profil Progam Studi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('institution') }}" class="nav-link">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>Profil Institusi</p>
+                    </a>
+                </li>
+                @endhasanyrole
+                @hasanyrole('Mahasiswa MSU')
+                <li class="nav-item">
+                    <a href="{{ route('student.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Profil Mahasiswa</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('department.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-building"></i>
+                        <p>Profil Progam Studi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('institution') }}" class="nav-link">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>Profil Institusi</p>
+                    </a>
+                </li>
+                @endhasanyrole
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

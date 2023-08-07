@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Mahasiswa</h1>
+                <h1 class="m-0">Mahasiswa Regular</h1>
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="">Mahasiswa</a></li>
+                    <li class="breadcrumb-item"><a href="">Mahasiswa Regular</a></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="header-title">
-                                        <h4 class="card-title">Manajemen Mahasiswa</h4>
+                                        <h4 class="card-title">Manajemen Mahasiswa Regular</h4>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <a class="btn btn-sm btn-outline-info" href="{{ route('student.create') }}"><i

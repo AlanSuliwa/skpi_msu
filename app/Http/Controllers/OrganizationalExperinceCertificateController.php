@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\OrganizationalExperinceCertificateFile;
+use App\Models\Student;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -49,6 +50,21 @@ class OrganizationalExperinceCertificateController extends Controller
             })
             ->toJson();
     }
+
+    public function verification($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = OrganizationalExperinceCertificateFile::find($id);
+
+        $data->update([
+            'status' => OrganizationalExperinceCertificateFile::STATUS_VALIDATE
+        ]);
+
+        // Alert & Redirect
+        Alert::toast('Data Berhasil Disimpan', 'success');
+        return redirect()->back();
+    }
+
 
     public function store(Request $request)
     {

@@ -13,7 +13,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit User</h3>
+                        <h3 class="card-title">Edit Pengguna</h3>
                     </div>
                     <!-- /.card-header -->
 
@@ -30,11 +30,11 @@
                             @csrf
                             @method('put')
                             <div class="form-group">
-                                <label for="name">Nama User </label>
+                                <label for="name">Nama Pengguna  </label>
                                 <input type="text" name="name" class="form-control" id="name"
                                     value="{{ old('name', $user['name']) }}" placeholder="Nama Role..." required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group">   
                                 <label for="email">Email </label>
                                 <input type="email" name="email" class="form-control" id="email"
                                     value="{{ old('email', $user['email']) }}" placeholder="Email..." required>

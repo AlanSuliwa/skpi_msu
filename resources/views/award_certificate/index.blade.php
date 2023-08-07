@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="header-title">
-                                    <h4 class="card-title">Verifikasi Sertifikat Prestasi dan Penghargaan</h4>
+                                    <h4 class="card-title">Verifikasi Sertifikat Prestasi</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -38,10 +38,13 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Aksi</th>
-                                                <th>Nama User</th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Diinput pada</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Judul Bahasa Indonesia</th>
+                                                <th>Judul Bahasa Inggris</th>
+                                                <th>Lembaga</th>
+                                                <th>File</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,13 +70,10 @@
 
         function getDatatable() {
             data_table = $("#data-table").DataTable({
-                ajax: "{{ route('user.datatable') }}",
+                ajax: "{{ route('award_certificate.datatable') }}",
                 serverSide: true,
                 processing: true,
                 destroy: true,
-                order: [
-                    [5, 'desc']
-                ],
                 columns: [{
                         "data": null,
                         "sortable": false,
@@ -87,20 +87,32 @@
                         data: 'action'
                     },
                     {
-                        name: 'name',
-                        data: 'name'
+                        name: 'student_nim',
+                        data: 'student_nim'
                     },
                     {
-                        name: 'email',
-                        data: 'email'
+                        name: 'student_name',
+                        data: 'student_name'
                     },
                     {
-                        name: 'role',
-                        data: 'role'
+                        name: 'indonesian_title',
+                        data: 'indonesian_title'
                     },
                     {
-                        name: 'created_at',
-                        data: 'created_at'
+                        name: 'english_title',
+                        data: 'english_title'
+                    },
+                    {
+                        name: 'institution',
+                        data: 'institution'
+                    },
+                    {
+                        name: 'file',
+                        data: 'file'
+                    },
+                    {
+                        name: 'status',
+                        data: 'status'
                     },
                 ],
             });

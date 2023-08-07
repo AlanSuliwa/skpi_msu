@@ -13,7 +13,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Mahasiswa</h3>
+                        <h3 class="card-title">Tambah Mahasiswa Regular</h3>
                     </div>
                     <!-- /.card-header -->
 
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Akun Mahasiswa</label>
+                                        <label>Akun Mahasiswa Regular</label>
                                         <select name="user_id" class="form-control mb-3 select2" required>
                                             <option selected value="">Pilih Akun</option>
                                             @foreach ($students as $item)

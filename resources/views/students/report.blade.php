@@ -3,6 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
+    <style>
+
+        @page {
+            size: 8in 7.5in;
+        }
+
+        #judul {
+            text-align: center;
+        }
+        #halaman {
+            width: auto;
+            height: auto;
+            position: absolute;
+            border: 1px solid;
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 30px;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SKPI</title>
@@ -12,12 +32,13 @@
 
 <body>
     <div class="container-fluid">
-        <h5 class="text-center">Surat Keterangan Pendamping Ijazah</h5>
+        <h5 class="text-center">IDENTITAS MAHASISWA</h5>
+        <h5 class="text-center">POLITEKNIK NEGERI SRIWIJAYA</h5>
         <br>
         <table>
             <tr>
-                <th>1. NAMA</th>
-                <td>:</td>
+                <td>1. NAMA*)</td>
+            <td>:</td>
                 <td>{{ $data->name }}</td>
             </tr>
         </table>

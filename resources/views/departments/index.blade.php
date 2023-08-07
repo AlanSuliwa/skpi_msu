@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="">Jurusan</a></li>
+                    <li class="breadcrumb-item"><a href="">Jurusan & Program Studi</a></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="header-title">
-                                        <h4 class="card-title">Manajemen Jurusan</h4>
+                                        <h4 class="card-title">Manajemen Jurusan & Program Studi</h4>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <a class="btn btn-sm btn-outline-info" href="{{ route('department.create') }}"><i
