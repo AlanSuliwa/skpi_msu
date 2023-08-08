@@ -33,9 +33,11 @@ Route::get('/institution', [App\Http\Controllers\HomeController::class, 'institu
 // Student
 Route::group(['controller' => StudentController::class, 'prefix' => 'student', 'as' => 'student.'], function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/index_msu', 'index_msu')->name('index_msu');
+    Route::get('/msu', 'index_msu')->name('msu');
     Route::get('/create', 'create')->name('create');
+    Route::get('/create_msu', 'create_msu')->name('create_msu');
     Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/edit_msu/{id}', 'edit_msu')->name('edit_msu');
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/report/{id}', 'report')->name('report');
     Route::get('/datatable', 'datatable')->name('datatable');

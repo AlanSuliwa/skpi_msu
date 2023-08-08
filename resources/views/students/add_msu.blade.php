@@ -77,12 +77,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenjang</label>
-                                        <select name="degree" class="form-control mb-3 select2" required>
-                                            <option selected value="">Pilih Jenjang</option>
-                                            @foreach (\App\Models\Department::DEGREE_CHOICE as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" name="degree" class="form-control" value="MSU" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -111,7 +106,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <a href="{{ route('student.index_msu') }}" class="btn btn-warning">Kembali</a>
+                            <a href="{{ route('student.msu') }}" class="btn btn-warning">Kembali</a>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         </div>
                     </form>

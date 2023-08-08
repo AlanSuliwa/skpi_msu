@@ -76,25 +76,23 @@ class StudentController extends Controller
 
     public function index_msu()
     {
+        // Confirm Delete Alert
+        $title = 'Hapus Data!';
+        $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+        confirmDelete($title, $text);
 
-            // Confirm Delete Alert
-            $title = 'Hapus Data!';
-            $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
-            confirmDelete($title, $text);
-
-            return view('students.index_msu');
-
+        return view('students.index_msu');
     }
 
     public function datatable_msu()
     {
         $model = Student::query()
-             ->where('degree', 'msu')
+            ->where('degree', 'msu')
             ->orderBy('name', 'asc');
 
         return DataTables::of($model)
             ->addColumn('action', function ($data) {
-                $url_edit = route('student.edit', Crypt::encrypt($data->id));
+                $url_edit = route('student.edit_msu', Crypt::encrypt($data->id));
                 $url_show = route('student.show', Crypt::encrypt($data->id));
                 $url_delete = route('student.destroy', Crypt::encrypt($data->id));
 
@@ -117,7 +115,26 @@ class StudentController extends Controller
         return view('students.add', compact('students', 'departments'));
     }
 
+    public function create_msu()
+    {
+        $students = User::role('Mahasiswa MSU')->get();
+        $departments = Department::select('id', 'name', 'study_program')->get();
+
+        return view('students.add_msu', compact('students', 'departments'));
+    }
+
     public function edit($id)
+    {
+        $id = Crypt::decrypt($id);
+
+        $data = Student::find($id);
+
+        $supervisors = Supervisor::all();
+
+        return view('students.edit', compact('data', 'supervisors'));
+    }
+
+    public function edit_msu($id)
     {
         $id = Crypt::decrypt($id);
 
@@ -134,7 +151,20 @@ class StudentController extends Controller
 
         $data = Student::find($id);
 
-        return view('students.show', compact('data'));
+        // IntershipCertificateFile
+        $IntershipCertificateFiles = IntershipCertificateFile::where('user_id', $data->user_id)->get();
+
+        //OrganizationalExperinceCertificateFile
+        $OrganizationalExperinceCertificateFiles = OrganizationalExperinceCertificateFile::where('user_id', $data->user_id)->get();
+
+        //AwardCertificateFile
+        $AwardCertificateFiles = AwardCertificateFile::where('user_id', $data->user_id)->get();
+
+        //SkillCertificateFile
+        $SkillCertificateFiles = SkillCertificateFile::where('user_id', $data->user_id)->get();
+
+        $user = User::where('id', $data->user_id)->first();
+        return view('students.show', compact('data', 'IntershipCertificateFiles', 'OrganizationalExperinceCertificateFiles', 'AwardCertificateFiles', 'SkillCertificateFiles', 'user'));
     }
 
     public function store(Request $request)

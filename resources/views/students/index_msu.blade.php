@@ -32,7 +32,7 @@
                                         <h4 class="card-title">Manajemen Mahasiswa MSU</h4>
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <a class="btn btn-sm btn-outline-info" href="{{ route('student.create') }}"><i
+                                        <a class="btn btn-sm btn-outline-info" href="{{ route('student.create_msu') }}"><i
                                                 class="fa fa-plus"></i> Tambah Data</a>
                                     </div>
 
