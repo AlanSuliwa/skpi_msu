@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <style>
-
         @page {
             size: 8in 7.5in;
         }
@@ -12,6 +11,7 @@
         #judul {
             text-align: center;
         }
+
         #halaman {
             width: auto;
             height: auto;
@@ -37,9 +37,58 @@
         <br>
         <table>
             <tr>
-                <td>1. NAMA*)</td>
-            <td>:</td>
+                <td>NAMA</td>
+                <td>:</td>
                 <td>{{ $data->name }}</td>
+            </tr>
+            <tr>
+                <td>NPM/KTP</td>
+                <td>:</td>
+                <td>{{ $data->nim }}/{{ $data->ktp }}</td>
+            </tr>
+            <tr>
+                <td>TEMPAT LAHIR</td>
+                <td>:</td>
+                <td>{{ $data->birth_place }}</td>
+            </tr>
+            <tr>
+                <td>TANGGAL LAHIR</td>
+                <td>:</td>
+                <td>{{ $data->birth_date }}</td>
+            </tr>
+            <tr>
+                <td>AGAMA</td>
+                <td>:</td>
+                <td>{{ $data->religion }}</td>
+            </tr>
+            <tr>
+                <td>JURUSAN</td>
+                <td>:</td>
+                <td>{{ $data->department }}</td>
+            </tr>
+            <tr>
+                <td>PROGRAM STUDI</td>
+                <td>:</td>
+                <td>{{ $data->study_program }}</td>
+            </tr>
+            <tr>
+                <td>ALAMAT LENGKAP</td>
+                <td>:</td>
+                <td>{{ $data->address }}</td>
+            </tr>
+            <tr>
+                <td>JUDUL LAPORAN AKHIR DALAM BAHASA :</td>
+                <td>:</td>
+            </tr>
+            <tr>
+                <td>- INDONESIA</td>
+                <td>:</td>
+                <td>{{ $data->indonesian_title }}</td>
+            </tr>
+            <tr>
+                <td>- INGGRIS</td>
+                <td>:</td>
+                <td>{{ $data->english_title }}</td>
             </tr>
         </table>
     </div>
