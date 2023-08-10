@@ -55,6 +55,7 @@ class StudentController extends Controller
     public function datatable()
     {
         $model = Student::query()
+            ->where('degree', '!=', 'msu')
             ->orderBy('name', 'asc');
 
         return DataTables::of($model)

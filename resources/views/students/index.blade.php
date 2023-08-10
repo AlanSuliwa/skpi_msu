@@ -4,13 +4,19 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Mahasiswa Regular</h1>
+                @role('Mahasiswa')
+                    <h1 class="m-0">Mahasiswa Regular</h1>
+                @endrole
+                @role('Mahasiswa MSU')
+                    <h1 class="m-0">Mahasiswa MSU</h1>
+                @endrole
+
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="">Mahasiswa Regular</a></li>
+                    <li class="breadcrumb-item"><a href="">Mahasiswa</a></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -64,7 +70,7 @@
         </div>
     @endhasanyrole
 
-    @role('Mahasiswa')
+    @hasanyrole('Mahasiswa|Mahasiswa MSU')
         <div class="container-fluid">
             <div class="row mb-3">
                 <div class="col-xs-6 col-md-12">
@@ -305,8 +311,8 @@
                             <div class="text-center">
                                 <a href="{{ route('student.edit', Crypt::encrypt($data->id)) }}" class="btn btn-info"><i
                                         class="fa fa-edit"></i> Ubah Data</a>
-                                <a target="_blank" href="{{ route('student.report', Crypt::encrypt($data->id)) }}" class="btn btn-danger"><i
-                                        class="fa fa-file-pdf"></i> Cetak Identitas</a>
+                                <a target="_blank" href="{{ route('student.report', Crypt::encrypt($data->id)) }}"
+                                    class="btn btn-danger"><i class="fa fa-file-pdf"></i> Cetak Identitas</a>
                             </div>
                         </div>
                     </div>
@@ -818,7 +824,7 @@
                 </div>
             </div>
         </div>
-    @endrole
+    @endhasanyrole
 @endsection
 
 @section('js_after')
