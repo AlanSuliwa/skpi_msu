@@ -22,7 +22,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->hasRole('Mahasiswa')) {
+        if (Auth::user()->hasAnyRole('Mahasiswa|Mahasiswa MSU')) {
             $user_id = Auth::user()->id;
             $user = User::where('id', $user_id)->first();
 
